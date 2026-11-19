@@ -1,6 +1,6 @@
 # xAI-Patient-Triage
 
-I am building an explainable patient triage system using ICU vital sign data. I train an unsupervised anomaly detector on patient vitals to flag high-acuity patients. I apply Shapley-value attribution to explain which vital signs drove each flag. I then investigate whether those explanations remain stable and faithful when concept drift is present — because patient populations and sensor readings change continuously in real clinical settings
+I am building an explainable patient triage system using ICU vital sign data. I train an unsupervised anomaly detector on patient vitals to flag high-acuity patients. I apply Shapley-value attribution to explain which vital signs drove each flag. I then investigate whether those explanations remain stable and faithful when concept drift is present  because patient populations and sensor readings change continuously in real clinical settings
 
 - Inspired by the 'On the efficient Explanation of Outlier Detection  Ensembles through Shapley Values' by Professor Emmanuel Muller
 - Applying Shapley-value attribution to patient acuity scoring using ICU vital sign data (MIMIC-III), inspired by Klüttermann 
