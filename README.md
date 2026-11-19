@@ -101,6 +101,10 @@ Applying the early-period model to late-period patients:
 | Diastolic BP | +3.8% |
 | Temperature | +2.3% |
 
+
+<img width="1412" height="742" alt="image" src="https://github.com/user-attachments/assets/48f3f50b-92cf-498b-9780-8ff2effa110f" />
+
+
 **Core finding:** SHAP explanations are not stable under concept 
 drift. A clinician trusting the early-period explanation framework 
 would receive systematically different — potentially misleading 
