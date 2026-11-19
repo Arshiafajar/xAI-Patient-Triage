@@ -75,6 +75,9 @@ SHAP values show all five vitals contribute meaningfully
 through vital sign combinations rather than single-feature 
 thresholds  consistent with clinical reality.
 
+<img width="1431" height="681" alt="image" src="https://github.com/user-attachments/assets/2144c336-d7c4-4876-b1e3-96a61945235d" />
+
+
 ### 3. Individual explanations reveal distinct clinical patterns
 Each flagged patient has a unique SHAP profile the model is 
 not applying a single rule. Patient 204132 was flagged for 
@@ -82,6 +85,9 @@ cardiorespiratory stress; Patient 279721 for hypothermia +
 hypotension. This mirrors the finding in Klüttermann et al. 
 where semantically meaningful features emerged without 
 explicit labeling.
+
+<img width="1388" height="481" alt="image" src="https://github.com/user-attachments/assets/2bc5735d-72f8-43a1-bb6d-2e10b7447a23" />
+
 
 ### 4. SHAP explanations drift significantly under concept drift
 Applying the early-period model to late-period patients:
