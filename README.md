@@ -1,21 +1,143 @@
 # xAI-Patient-Triage
 
-I am building an explainable patient triage system using ICU vital sign data. I train an unsupervised anomaly detector on patient vitals to flag high-acuity patients. I apply Shapley-value attribution to explain which vital signs drove each flag. I then investigate whether those explanations remain stable and faithful when concept drift is present  because patient populations and sensor readings change continuously in real clinical settings
+An independent research project exploring whether **Shapley-value explanations of unsupervised anomaly detectors remain stable and clinically meaningful under concept drift** — using real ICU vital 
+sign data from MIMIC-III.
 
-- Inspired by the 'On the efficient Explanation of Outlier Detection  Ensembles through Shapley Values' by Professor Emmanuel Muller
-- Applying Shapley-value attribution to patient acuity scoring using ICU vital sign data (MIMIC-III), inspired by Klüttermann 
-et al. (PAKDD 2024).
+Directly inspired by Klüttermann, Balestra & Müller (PAKDD 2024) and  Li & Müller (DKE 2024).
+
 
 ## Research Question
-Can Shapley-value explanations of anomaly detectors trained on ICU vital signs surface clinically meaningful feature combinations  to support trustworthy triage decisions?
-## Dataset
-MIMIC-III Clinical Database Demo (PhysioNet)
-## Methods
-- Isolation Forest (anomaly detection)
-- SHAP (Shapley-value attribution)
 
-## Status
-Work in progress — started 20th October 2026
+> *Can Shapley-value explanations of anomaly detectors trained on 
+> ICU vital signs surface clinically meaningful feature combinations 
+> to support trustworthy triage decisions — and do those explanations 
+> remain stable when concept drift is present?*
+
+---
+
+## Motivation
+
+During my work as a Research Assistant on a government-funded 
+Hospital Patient Registration and Prediction System (PAF-IAST, 
+Pakistan), I built pipelines over real-time ICU sensor streams. 
+A recurring problem: anomaly flags without explanations cannot be 
+acted on by clinicians. A doctor cannot trust or challenge a 
+black-box score.
+
+Reading Klüttermann et al. (PAKDD 2024) gave me the theoretical 
+framework to investigate this properly. The CelebA experiment in 
+that paper  where an unsupervised model surfaced semantically 
+meaningful features nobody explicitly labeled  directly parallels 
+what I observed in clinical data: subtle vital sign combinations 
+carry diagnostic signal that falls below conscious clinical attention.
+
+---
+
+## Dataset
+
+**MIMIC-III Clinical Database Demo** (PhysioNet, Johnson et al. 2016)  
+- 75 ICU patients after preprocessing  
+- 5 vital signs: Heart Rate, Systolic BP, Diastolic BP, 
+  Temperature, Respiratory Rate  
+- Item IDs verified against D_ITEMS.csv  
+
+> Note: MIMIC-III shifts dates 100 years forward for 
+> de-identification. All temporal analyses use relative 
+> ordering, not absolute dates.
+
+---
+
+## Methods
+
+| Step | Method |
+|---|---|
+| Anomaly Detection | Isolation Forest (scikit-learn) |
+| Explainability | SHAP  TreeExplainer (Lundberg & Lee, NeurIPS 2017) |
+| Concept Drift Simulation | Temporal train/test split (early vs late admissions) |
+| Aggregation | Mean vital signs per ICU stay (long → wide format) |
+
+---
+
+## Key Findings
+
+### 1. Clinically meaningful anomalies detected without labels
+8 of 75 patients flagged as anomalous. 7 of 8 were MICU admissions.
+Notable cases:
+- Patient 298685: Systolic BP = 187 mmHg, LOS = 13.3 days (CCU)
+- Patient 279721: Temperature = 94.7°F + hypotension (TSICU) 
+  — hypothermia/hypotension combination
+- Patient 220016: HR = 52 bpm + critically low diastolic BP 
+  — bradycardia/shock pattern
+
+### 2. Balanced feature importance — no single vital dominates
+SHAP values show all five vitals contribute meaningfully 
+(range: 0.313–0.386), suggesting the model detects anomalies 
+through vital sign combinations rather than single-feature 
+thresholds  consistent with clinical reality.
+
+### 3. Individual explanations reveal distinct clinical patterns
+Each flagged patient has a unique SHAP profile the model is 
+not applying a single rule. Patient 204132 was flagged for 
+cardiorespiratory stress; Patient 279721 for hypothermia + 
+hypotension. This mirrors the finding in Klüttermann et al. 
+where semantically meaningful features emerged without 
+explicit labeling.
+
+### 4. SHAP explanations drift significantly under concept drift
+Applying the early-period model to late-period patients:
+
+| Vital Sign | Change in SHAP Importance |
+|---|---|
+| Heart Rate | **+33.7%** |
+| Respiratory Rate | **+32.2%** |
+| Systolic BP | +9.2% |
+| Diastolic BP | +3.8% |
+| Temperature | +2.3% |
+
+**Core finding:** SHAP explanations are not stable under concept 
+drift. A clinician trusting the early-period explanation framework 
+would receive systematically different — potentially misleading 
+explanations when the model is applied to later patients.
+
+---
+
+## Open Research Questions
+
+1. Can we detect when SHAP explanations have drifted enough to 
+   be clinically misleading — without ground truth labels?
+2. Would time-aware features (variance, peak values, trends) 
+   produce more stable explanations than mean aggregation?
+3. Does Li & Müller's state-transition approach transfer to 
+   clinical vital sign streams where drift is slower and noisier?
+4. How should the contamination threshold be calibrated in 
+   unsupervised clinical settings without labeled anomalies?
+
+---
+
+## Limitations
+
+- 75 patients (demo dataset) —findings are preliminary
+- Mean aggregation loses temporal patterns within a stay
+- No clinician validation of explanation usefulness
+- Contamination parameter (0.1) assumed, not derived from labels
+
+---
+
 
 ## References
-Simon Klu ̈ttermann[0000−0001−9698−4339], Chiara Balestra[0000−0002−3620−9012],  and Emmanuel Mu ̈ller[0000−0002−5409−6875]
+
+- Klüttermann S., Balestra C., Müller E. *"On the Efficient 
+  Explanation of Outlier Detection Ensembles Through Shapley 
+  Values."* PAKDD 2024.
+- Li B., Müller E. *"State-Transition-Aware Anomaly Detection 
+  Under Concept Drifts."* DKE 2024.
+- Lundberg S., Lee S. *"A Unified Approach to Interpreting 
+  Model Predictions."* NeurIPS 2017.
+- Johnson A. et al. *"MIMIC-III, a freely accessible critical 
+  care database."* Scientific Data 2016.
+
+---
+
+*Independent project — october November 2026*  
+*Author: Arshia Fajar | PAF-IAST / FH St. Pölten*  
+*Contact: etifah2124@gmail.com*
