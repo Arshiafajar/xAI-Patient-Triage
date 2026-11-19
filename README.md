@@ -87,7 +87,8 @@ where semantically meaningful features emerged without
 explicit labeling.
 
 <img width="1388" height="481" alt="image" src="https://github.com/user-attachments/assets/2bc5735d-72f8-43a1-bb6d-2e10b7447a23" />
-
+<img width="1397" height="376" alt="image" src="https://github.com/user-attachments/assets/abf871b8-47dd-4f3c-a67a-54a09782fbcc" />
+<img width="1405" height="395" alt="image" src="https://github.com/user-attachments/assets/df59a455-322d-4dc0-91b6-7509b5339403" />
 
 ### 4. SHAP explanations drift significantly under concept drift
 Applying the early-period model to late-period patients:
