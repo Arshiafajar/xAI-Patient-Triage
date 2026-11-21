@@ -1,7 +1,7 @@
 # xAI-Patient-Triage
 
 An independent research project exploring whether **Shapley-value explanations of unsupervised anomaly detectors remain stable and clinically meaningful under concept drift** — using real ICU vital 
-sign data from MIMIC-III.
+sign data from MIMIC-III..
 
 Directly inspired by Klüttermann, Balestra & Müller (PAKDD 2024) and  Li & Müller (DKE 2024).
 
