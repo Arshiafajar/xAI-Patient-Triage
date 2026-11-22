@@ -98,7 +98,7 @@ Applying the early-period model to late-period patients:
 
 **Core finding:** SHAP explanations are not stable under concept 
 drift. A clinician trusting the early-period explanation framework 
-would receive systematically different — potentially misleading 
+would receive systematically different, potentially misleading 
 explanations when the model is applied to later patients.
 
 ---
@@ -106,7 +106,7 @@ explanations when the model is applied to later patients.
 ## Open Research Questions
 
 1. Can we detect when SHAP explanations have drifted enough to 
-   be clinically misleading — without ground truth labels?
+   be clinically misleading, without ground truth labels?
 2. Would time-aware features (variance, peak values, trends) 
    produce more stable explanations than mean aggregation?
 3. Does Li & Müller's state-transition approach transfer to 
@@ -140,6 +140,6 @@ explanations when the model is applied to later patients.
 
 ---
 
-*Independent project — october November 2026*  
-*Author: Arshia Fajar | PAF-IAST / FH St. Pölten*  
+*Independent project  October 2026 - Present*  
+*Author: Arshia Fajar /*  
 *Contact: etifah2124@gmail.com*
