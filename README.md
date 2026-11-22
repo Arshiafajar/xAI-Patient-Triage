@@ -10,26 +10,17 @@ Directly inspired by Klüttermann, Balestra & Müller (PAKDD 2024) and  Li & Mü
 
 > *Can Shapley-value explanations of anomaly detectors trained on 
 > ICU vital signs surface clinically meaningful feature combinations 
-> to support trustworthy triage decisions — and do those explanations 
+> to support trustworthy triage decisions and and do those explanations 
 > remain stable when concept drift is present?*
 
 ---
 
 ## Motivation
 
-During my work as a Research Assistant on a government-funded 
-Hospital Patient Registration and Prediction System (PAF-IAST, 
-Pakistan), I built pipelines over real-time ICU sensor streams. 
-A recurring problem: anomaly flags without explanations cannot be 
-acted on by clinicians. A doctor cannot trust or challenge a 
+During my work as a Research Assistant on a government-funded project, I have been working sensors assembling to develop clinical self-service kiosk. A thing that I have been thinking about ever since that project concluded is that the anomaly flags without explanations cannot be acted on by clinicians. A doctor cannot trust or challenge a 
 black-box score.
 
-Reading Klüttermann et al. (PAKDD 2024) gave me the theoretical 
-framework to investigate this properly. The CelebA experiment in 
-that paper  where an unsupervised model surfaced semantically 
-meaningful features nobody explicitly labeled  directly parallels 
-what I observed in clinical data: subtle vital sign combinations 
-carry diagnostic signal that falls below conscious clinical attention.
+Reading Klüttermann et al. (PAKDD 2024) gave me the theoretical framework to investigate this properly. The CelebA experiment in that paper  where an unsupervised model surfaced semantically meaningful features nobody explicitly labeled  directly parallels what I observed in clinical data: subtle vital sign combinations  carry diagnostic signal that falls below conscious clinical attention.
 
 ---
 
