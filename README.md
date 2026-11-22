@@ -56,9 +56,9 @@ Reading Klüttermann et al. (PAKDD 2024) gave me the theoretical framework to in
 Notable cases:
 - Patient 298685: Systolic BP = 187 mmHg, LOS = 13.3 days (CCU)
 - Patient 279721: Temperature = 94.7°F + hypotension (TSICU) 
-  — hypothermia/hypotension combination
+  hypothermia/hypotension combination
 - Patient 220016: HR = 52 bpm + critically low diastolic BP 
-  — bradycardia/shock pattern
+   bradycardia/shock pattern
 
 ### 2. Balanced feature importance — no single vital dominates
 SHAP values show all five vitals contribute meaningfully 
